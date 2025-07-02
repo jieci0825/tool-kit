@@ -1,9 +1,14 @@
 <script setup lang="ts"></script>
 
 <template>
-    <div class="container">
-        <h1>Hello Electron</h1>
-    </div>
+    <div class="container"></div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--bg-color);
+}
+</style>
