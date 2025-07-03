@@ -6,5 +6,10 @@ import optimizer from 'vite-plugin-optimizer'
 
 // https://vite.dev/config/
 export default defineConfig({
+    resolve: {
+        alias: {
+            '@': '/src'
+        }
+    },
     plugins: [optimizer(getReplacer()), devPlugin(), vue()]
 })
