@@ -14,12 +14,20 @@ export default defineConfig({
             '@': '/src'
         }
     },
+    css: {
+        preprocessorOptions: {
+            scss: {
+                // 自动导入自定义的样式文件进行覆盖
+                additionalData: `@use "@/styles/element/index.scss" as *;`
+            }
+        }
+    },
     plugins: [
         AutoImport({
             resolvers: [ElementPlusResolver()]
         }),
         Components({
-            resolvers: [ElementPlusResolver()]
+            resolvers: [ElementPlusResolver({ importStyle: 'sass' })]
         }),
         optimizer(getReplacer()),
         devPlugin(),
