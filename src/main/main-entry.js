@@ -34,7 +34,10 @@ function isDevelopment() {
 function createWindow() {
     const win = new BrowserWindow({
         width: 800,
-        height: 500
+        height: 550,
+        minWidth: 800,
+        minHeight: 550,
+        titleBarStyle: 'hidden'
     })
 
     // 区分开发和生产环境
