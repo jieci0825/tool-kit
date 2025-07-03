@@ -3,6 +3,9 @@ import vue from '@vitejs/plugin-vue'
 import { devPlugin, getReplacer } from './plugins/dev.plugin'
 // @ts-ignore
 import optimizer from 'vite-plugin-optimizer'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -11,5 +14,15 @@ export default defineConfig({
             '@': '/src'
         }
     },
-    plugins: [optimizer(getReplacer()), devPlugin(), vue()]
+    plugins: [
+        AutoImport({
+            resolvers: [ElementPlusResolver()]
+        }),
+        Components({
+            resolvers: [ElementPlusResolver()]
+        }),
+        optimizer(getReplacer()),
+        devPlugin(),
+        vue()
+    ]
 })
