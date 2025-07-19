@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { effect, ref } from 'vue'
+import { ref } from 'vue'
 import { CategoryList, type ICategoryItem } from '../config/category.config'
 
 const keyword = ref('')
