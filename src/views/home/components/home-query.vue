@@ -1,7 +1,31 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { effect, ref } from 'vue'
+import { CategoryList, type ICategoryItem } from '../config/category.config'
 
 const keyword = ref('')
+
+type ICategoryItemWithActive = ICategoryItem & {
+    active: boolean
+}
+const _categoryList = ref<ICategoryItemWithActive[]>([])
+
+function formatCategoryList() {
+    _categoryList.value = CategoryList.map(item => {
+        let active = false
+        if (item.id === 'all') {
+            active = true
+        }
+        return { ...item, active }
+    })
+}
+formatCategoryList()
+
+const handleClick = (raw: ICategoryItemWithActive) => {
+    _categoryList.value.forEach(item => {
+        item.active = false
+    })
+    raw.active = true
+}
 </script>
 
 <template>
@@ -14,9 +38,14 @@ const keyword = ref('')
             <el-button type="primary">搜索</el-button>
         </div>
         <div class="category-list">
-            <div class="category-item">工具1</div>
-            <div class="category-item">工具2</div>
-            <div class="category-item">工具3</div>
+            <el-tag
+                type="primary"
+                v-for="item in _categoryList"
+                :key="item.id"
+                :effect="item.active ? 'dark' : 'plain'"
+                @click="handleClick(item)"
+                >{{ item.name }}</el-tag
+            >
         </div>
     </div>
 </template>
@@ -25,11 +54,23 @@ const keyword = ref('')
 .query-wrapper {
     margin: 20px auto;
     flex-direction: column;
+    gap: 10px;
+
     .search-bar {
         width: 50%;
         display: flex;
         align-items: center;
         gap: 10px;
+    }
+
+    .category-list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        .el-tag {
+            cursor: pointer;
+        }
     }
 }
 </style>
