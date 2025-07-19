@@ -10,12 +10,14 @@
 <style scoped lang="scss">
 .header-wrapper {
     padding-top: 50px;
+
     .title {
         font-size: 22px;
         font-weight: bold;
         text-align: center;
         color: var(--title-primary-color);
     }
+
     .description {
         font-size: 16px;
         text-align: center;
