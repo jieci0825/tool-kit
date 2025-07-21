@@ -6,6 +6,8 @@
 import esbuild from 'esbuild'
 import type { ViteDevServer } from 'vite'
 import { spawn } from 'child_process'
+import path from 'node:path'
+import fs from 'node:fs'
 
 export const devPlugin = () => {
     return {
@@ -20,6 +22,13 @@ export const devPlugin = () => {
                 outfile: 'dist/main.js', // 指定输出文件
                 external: ['electron'] // 指定外部依赖，不打包
             })
+
+            // 拷贝预加载脚本文件
+            const srcPath = path.resolve(process.cwd(), 'src/main/preload.js') // 示例路径
+            const distPath = path.resolve(process.cwd(), 'dist/preload.js')
+
+            fs.copyFileSync(srcPath, distPath)
+            console.log(`[dev-plugin] 已复制文件: ${srcPath} -> ${distPath}`)
 
             // 监听 vite 开发服务器
             server.httpServer?.once('listening', () => {

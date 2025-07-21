@@ -38,7 +38,13 @@ function createWindow() {
         minWidth: 800,
         minHeight: 550,
         frame: false,
-        titleBarStyle: 'hidden'
+        titleBarStyle: 'hidden',
+        webPreferences: {
+            preload: join(__dirname, 'preload.js'),
+            // webSecurity: false,
+            nodeIntegration: false,
+            contextIsolation: true
+        }
     })
 
     // 区分开发和生产环境
