@@ -45,7 +45,16 @@ formatToolList()
                 <div class="tool-item__desc">{{ item.description }}</div>
             </div>
             <div class="tool-item__bottom">
-                <el-button type="primary">打开工具</el-button>
+                <el-button
+                    v-if="!!item.link"
+                    type="primary"
+                    >点击访问</el-button
+                >
+                <el-button
+                    v-else
+                    type="primary"
+                    >打开工具</el-button
+                >
             </div>
         </div>
     </div>

@@ -40,7 +40,7 @@ export const ToolList: IToolItem[] = [
     },
     {
         name: 'Lorem Picsum',
-        icon: 'icon-img',
+        icon: 'icon-network',
         id: 'random-img',
         category: 'resource',
         description: '一般我在开发时，需要图片来填充网站内容时，会使用这个站点',
@@ -55,7 +55,7 @@ export const ToolList: IToolItem[] = [
     },
     {
         name: '字体包',
-        icon: 'icon-font',
+        icon: 'icon-network',
         id: 'font',
         category: 'resource',
         description: '一些我个人收集的编程字体文件'
