@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch, watchEffect } from 'vue'
+import { computed, ref } from 'vue'
 import { ToolList, type IToolItem } from '../config/tool.config'
 import type { ICondition } from '../types'
 

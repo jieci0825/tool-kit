@@ -34,16 +34,28 @@ const handleClick = (raw: CategoryItemWithActive) => {
 
     emits('setCondition', { category: raw.id })
 }
+
+const handleSerach = () => {
+    const _keyword = keyword.value.trim()
+    emits('setCondition', { keyword: _keyword })
+}
 </script>
 
 <template>
     <div class="query-wrapper flex-center">
         <div class="search-bar">
             <el-input
+                clearable
                 v-model="keyword"
                 placeholder="请输入工具名称"
+                @keyup.enter="handleSerach"
+                @clear="handleSerach"
             ></el-input>
-            <el-button type="primary">搜索</el-button>
+            <el-button
+                type="primary"
+                @click="handleSerach"
+                >搜索</el-button
+            >
         </div>
         <div class="category-list">
             <el-tag
