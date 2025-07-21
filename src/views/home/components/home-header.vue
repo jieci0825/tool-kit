@@ -8,7 +8,7 @@
 
 <style scoped lang="scss">
 .header-wrapper {
-    padding-top: 30px;
+    padding-top: 20px;
 
     .title {
         font-size: 22px;

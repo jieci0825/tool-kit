@@ -1,8 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import PageHeader from '@/components/page-header/index.vue'
+</script>
 
 <template>
     <div class="container">
-        <router-view></router-view>
+        <PageHeader />
+        <div class="main">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
@@ -12,5 +17,11 @@
     height: 100vh;
     overflow: hidden;
     background-color: var(--bg-color);
+
+    .main {
+        width: 100%;
+        height: calc(100% - 30px);
+        overflow: hidden;
+    }
 }
 </style>
