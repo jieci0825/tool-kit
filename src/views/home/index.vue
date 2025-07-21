@@ -13,8 +13,6 @@ const condition = ref<ICondition>({
 const setCondition = (newCondition: Partial<ICondition>) => {
     condition.value = { ...condition.value, ...newCondition }
 }
-
-console.log('electronAPI:', window.electronAPI)
 </script>
 
 <template>
