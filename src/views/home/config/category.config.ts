@@ -4,10 +4,12 @@ export interface ICategoryItem {
     id: string
 }
 
-export const CategoryList: ICategoryItem[] = [
+export const CategoryList = [
     { name: '全部', id: 'all' },
     { name: '外观', id: 'appearance' },
-    { name: '工作', id: 'work' },
+    { name: '开发', id: 'develop' },
     { name: '实用', id: 'useful' },
     { name: '资源', id: 'resource' }
-]
+] as const
+
+export type TCategoryIds = (typeof CategoryList)[number]['id']

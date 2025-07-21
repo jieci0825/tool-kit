@@ -33,8 +33,8 @@ function isDevelopment() {
 
 function createWindow() {
     const win = new BrowserWindow({
-        width: 800,
-        height: 550,
+        width: 1000,
+        height: 600,
         minWidth: 800,
         minHeight: 550,
         titleBarStyle: 'hidden'

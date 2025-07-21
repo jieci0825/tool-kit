@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import HomeContent from './components/home-content.vue'
 import HomeHeader from './components/home-header.vue'
 import HomeQuery from './components/home-query.vue'
 </script>
@@ -7,7 +8,7 @@ import HomeQuery from './components/home-query.vue'
     <div class="home-container">
         <HomeHeader />
         <HomeQuery />
-        <div class="content-wrapper"></div>
+        <HomeContent />
     </div>
 </template>
 
@@ -15,5 +16,9 @@ import HomeQuery from './components/home-query.vue'
 .home-container {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
 }
 </style>

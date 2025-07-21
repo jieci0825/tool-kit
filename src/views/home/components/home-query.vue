@@ -4,13 +4,13 @@ import { CategoryList, type ICategoryItem } from '../config/category.config'
 
 const keyword = ref('')
 
-type ICategoryItemWithActive = ICategoryItem & {
+type CategoryItemWithActive = ICategoryItem & {
     active: boolean
 }
-const _categoryList = ref<ICategoryItemWithActive[]>([])
+const categoryList = ref<CategoryItemWithActive[]>([])
 
 function formatCategoryList() {
-    _categoryList.value = CategoryList.map(item => {
+    categoryList.value = CategoryList.map(item => {
         let active = false
         if (item.id === 'all') {
             active = true
@@ -20,8 +20,8 @@ function formatCategoryList() {
 }
 formatCategoryList()
 
-const handleClick = (raw: ICategoryItemWithActive) => {
-    _categoryList.value.forEach(item => {
+const handleClick = (raw: CategoryItemWithActive) => {
+    categoryList.value.forEach(item => {
         item.active = false
     })
     raw.active = true
@@ -40,7 +40,7 @@ const handleClick = (raw: ICategoryItemWithActive) => {
         <div class="category-list">
             <el-tag
                 type="primary"
-                v-for="item in _categoryList"
+                v-for="item in categoryList"
                 :key="item.id"
                 :effect="item.active ? 'dark' : 'plain'"
                 @click="handleClick(item)"
@@ -52,12 +52,13 @@ const handleClick = (raw: ICategoryItemWithActive) => {
 
 <style scoped lang="scss">
 .query-wrapper {
-    margin: 20px auto;
+    width: 80%;
+    display: flex;
     flex-direction: column;
     gap: 10px;
 
     .search-bar {
-        width: 50%;
+        width: 70%;
         display: flex;
         align-items: center;
         gap: 10px;

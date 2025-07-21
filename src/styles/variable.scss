@@ -7,7 +7,12 @@
     --text-content-color: #71717a;
 
     --border-color: #e4e4e7;
+    --border: var(--border-color) 1px solid;
+    --border-radius: 6px;
+    --border-radius-sm: 4px;
+    --border-radius-lg: 8px;
 
     --bg-color: #f5f8fb;
+    --bg-secondary-color: #d6d8da;
     --bg-active-color: #fff;
 }
