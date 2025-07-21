@@ -44,7 +44,7 @@ export const ToolList: IToolItem[] = [
         id: 'random-img',
         category: 'resource',
         description: '一般我在开发时，需要图片来填充网站内容时，会使用这个站点',
-        link: 'https://unsplash.com/'
+        link: 'https://picsum.photos/'
     },
     {
         name: '剪贴板',
@@ -58,6 +58,14 @@ export const ToolList: IToolItem[] = [
         icon: 'icon-network',
         id: 'font',
         category: 'resource',
+        link: 'https://pan.baidu.com/s/1N6cC-Rn2UOMDF13rw3OyZg?pwd=qwer',
         description: '一些我个人收集的编程字体文件'
+    },
+    {
+        name: '视频去水印',
+        icon: 'icon-video-watermark',
+        id: 'video',
+        category: 'useful',
+        description: '复制分享链接，一键去除平台水印，支持抖音'
     }
 ]

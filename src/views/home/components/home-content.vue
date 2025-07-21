@@ -32,6 +32,10 @@ const filterToolList = computed(() => {
         return matchCategory && matchKeyword
     })
 })
+
+const openOutSideChain = (url: string) => {
+    window.open(url, '_blank')
+}
 </script>
 
 <template>
@@ -64,6 +68,7 @@ const filterToolList = computed(() => {
                 <el-button
                     v-if="!!item.link"
                     type="primary"
+                    @click="openOutSideChain(item.link)"
                     >点击访问</el-button
                 >
                 <el-button
