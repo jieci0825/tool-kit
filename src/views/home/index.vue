@@ -20,5 +20,7 @@ import HomeQuery from './components/home-query.vue'
     flex-direction: column;
     align-items: center;
     gap: 25px;
+    overflow: auto;
+    padding: 20px 0;
 }
 </style>
