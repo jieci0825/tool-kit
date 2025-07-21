@@ -37,6 +37,7 @@ function createWindow() {
         height: 600,
         minWidth: 800,
         minHeight: 550,
+        frame: false,
         titleBarStyle: 'hidden'
     })
 
