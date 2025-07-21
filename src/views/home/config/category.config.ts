@@ -1,7 +1,7 @@
 export interface ICategoryItem {
     name: string
     icon?: string
-    id: string
+    id: TCategoryIds
 }
 
 export const CategoryList = [

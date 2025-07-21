@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { CategoryList, type ICategoryItem } from '../config/category.config'
+import type { ICondition } from '../types'
+
+type HomeQueryEmits = {
+    (event: 'setCondition', value: Partial<ICondition>): void
+}
+const emits = defineEmits<HomeQueryEmits>()
 
 const keyword = ref('')
 
@@ -25,6 +31,8 @@ const handleClick = (raw: CategoryItemWithActive) => {
         item.active = false
     })
     raw.active = true
+
+    emits('setCondition', { category: raw.id })
 }
 </script>
 

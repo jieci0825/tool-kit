@@ -1,6 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref, watch, watchEffect } from 'vue'
 import { ToolList, type IToolItem } from '../config/tool.config'
+import type { ICondition } from '../types'
+
+type HomeContentProps = {
+    condition: ICondition
+}
+const props = defineProps<HomeContentProps>()
 
 type ToolItemWithEnable = IToolItem & {
     enable: boolean
@@ -16,13 +22,23 @@ function formatToolList() {
     })
 }
 formatToolList()
+
+const filterToolList = computed(() => {
+    const { category, keyword } = props.condition
+
+    return toolList.value.filter(item => {
+        const matchCategory = category === 'all' || item.category === category
+        const matchKeyword = keyword === '' || item.name.includes(keyword) || item.description.includes(keyword)
+        return matchCategory && matchKeyword
+    })
+})
 </script>
 
 <template>
     <div class="content-wrapper">
         <div
             class="tool-item"
-            v-for="item in toolList"
+            v-for="item in filterToolList"
             :key="item.id"
         >
             <div class="tool-item__top">
