@@ -16,7 +16,6 @@ import PageHeader from '@/components/page-header/index.vue'
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-color: var(--bg-color);
 
     .main {
         width: 100%;

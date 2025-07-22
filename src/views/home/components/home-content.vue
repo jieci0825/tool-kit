@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, unref } from 'vue'
 import { ToolList, type IToolItem } from '@/config/tool.config.ts'
 import type { ICondition } from '../types'
 
@@ -40,13 +40,20 @@ const openOutSideChain = (url: string) => {
 // 打开工具窗口
 const openToolWindow = async (tool: IToolItem) => {
     try {
-        await window.electronAPI?.openToolWindow({ toolId: tool.id, toolName: tool.name })
+        // 解 ref
+        const windowOptions = JSON.parse(JSON.stringify(tool.windowOptions || {}))
+
+        await window.electronAPI?.openToolWindow({
+            toolId: tool.id,
+            toolName: tool.name,
+            windowOptions
+        })
     } catch (error) {
         console.error('打开工具窗口失败:', error)
         // 如果是在浏览器环境中（开发调试），则使用路由跳转
         if (!window.electronAPI) {
             // 在新标签页中打开工具
-            const url = `${window.location.origin}${window.location.pathname}#/tool/${tool.id}`
+            const url = `${window.location.origin}${window.location.pathname}/tool/${tool.id}`
             window.open(url, '_blank')
         }
     }

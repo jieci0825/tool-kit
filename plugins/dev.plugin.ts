@@ -28,7 +28,6 @@ export const devPlugin = () => {
             const distPath = path.resolve(process.cwd(), 'dist/preload.js')
 
             fs.copyFileSync(srcPath, distPath)
-            console.log(`[dev-plugin] 已复制文件: ${srcPath} -> ${distPath}`)
 
             // 监听 vite 开发服务器
             server.httpServer?.once('listening', () => {

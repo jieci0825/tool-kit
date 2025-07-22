@@ -39,6 +39,7 @@ function createWindow() {
         minHeight: 550,
         frame: false,
         titleBarStyle: 'hidden',
+        transparent: true,
         webPreferences: {
             preload: join(__dirname, 'preload.js'),
             // webSecurity: false,
@@ -70,20 +71,24 @@ function createToolWindow(
 ) {
     const toolId = config.toolId
 
-    const win = new BrowserWindow({
-        width: 900,
-        height: 650,
-        minWidth: 600,
-        minHeight: 400,
-        frame: false,
-        titleBarStyle: 'hidden',
-        webPreferences: {
-            preload: join(__dirname, 'preload.js'),
-            nodeIntegration: false,
-            contextIsolation: true
+    const options = Object.assign(
+        {
+            width: 900,
+            height: 650,
+            minWidth: 600,
+            minHeight: 400,
+            frame: false,
+            titleBarStyle: 'hidden',
+            webPreferences: {
+                preload: join(__dirname, 'preload.js'),
+                nodeIntegration: false,
+                contextIsolation: true
+            }
         },
-        ...config.windowOptions
-    })
+        config.windowOptions
+    )
+
+    const win = new BrowserWindow(options)
 
     // 区分开发和生产环境，加载对应的工具页面
     if (isDevelopment()) {

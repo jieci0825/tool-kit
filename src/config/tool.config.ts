@@ -1,4 +1,5 @@
 import type { TCategoryIds } from './category.config'
+import type { BrowserWindowConstructorOptions } from 'electron'
 
 export interface IToolItem {
     name: string
@@ -7,6 +8,7 @@ export interface IToolItem {
     category: TCategoryIds
     description: string
     link?: string
+    windowOptions?: BrowserWindowConstructorOptions
 }
 
 export const ToolList: IToolItem[] = [
@@ -15,7 +17,19 @@ export const ToolList: IToolItem[] = [
         icon: 'icon-clock',
         id: 'clock',
         category: 'appearance',
-        description: '如果你喜欢类似日历卡片翻动的时钟效果，你应该尝试一下'
+        description: '如果你喜欢类似日历卡片翻动的时钟效果，你应该尝试一下',
+        windowOptions: {
+            width: 200,
+            height: 200,
+            minWidth: 200,
+            minHeight: 200,
+            resizable: false,
+            transparent: true,
+            frame: false,
+            titleBarStyle: 'hidden',
+            trafficLightPosition: { x: -100, y: -100 },
+            fullscreen: false
+        }
     },
     {
         name: '图片压缩',

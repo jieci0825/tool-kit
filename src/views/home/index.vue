@@ -33,5 +33,6 @@ const setCondition = (newCondition: Partial<ICondition>) => {
     gap: 25px;
     overflow: auto;
     padding: 20px 0;
+    background-color: var(--bg-color);
 }
 </style>

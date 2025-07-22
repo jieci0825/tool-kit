@@ -45,5 +45,6 @@ useEventListener(document, 'mouseup', handleMouseUp)
 .page-header {
     width: 100%;
     height: 30px;
+    background-color: var(--bg-color);
 }
 </style>
