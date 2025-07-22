@@ -62,19 +62,27 @@ function createWindow() {
 // 存储所有创建的工具窗口
 const toolWindows = new Map()
 
-function createToolWindow({ toolId, width, height, minHeight, minWidth }) {
+function createToolWindow(
+    config = {
+        toolId: '',
+        windowOptions: {}
+    }
+) {
+    const toolId = config.toolId
+
     const win = new BrowserWindow({
-        width: width || 900,
-        height: height || 650,
-        minWidth: minWidth || 600,
-        minHeight: minHeight || 400,
+        width: 900,
+        height: 650,
+        minWidth: 600,
+        minHeight: 400,
         frame: false,
         titleBarStyle: 'hidden',
         webPreferences: {
             preload: join(__dirname, 'preload.js'),
             nodeIntegration: false,
             contextIsolation: true
-        }
+        },
+        ...config.windowOptions
     })
 
     // 区分开发和生产环境，加载对应的工具页面
