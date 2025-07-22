@@ -12,7 +12,10 @@ const router = createRouter({
             path: '/tool/:toolId',
             name: 'Tool',
             component: () => import('@/views/tool/index.vue'),
-            props: true
+            props: true,
+            meta: {
+                hidePageheader: true
+            }
         }
     ]
 })
