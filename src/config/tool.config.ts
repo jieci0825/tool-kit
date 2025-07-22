@@ -19,12 +19,12 @@ export const ToolList: IToolItem[] = [
         category: 'appearance',
         description: '如果你喜欢类似日历卡片翻动的时钟效果，你应该尝试一下',
         windowOptions: {
-            width: 200,
-            height: 200,
-            minWidth: 200,
-            minHeight: 200,
+            width: 600,
+            height: 300,
+            minWidth: 600,
+            minHeight: 300,
             resizable: false,
-            transparent: true,
+            transparent: false,
             frame: false,
             titleBarStyle: 'hidden',
             trafficLightPosition: { x: -100, y: -100 },
@@ -82,4 +82,4 @@ export const ToolList: IToolItem[] = [
         category: 'useful',
         description: '复制分享链接，一键去除平台水印，支持抖音'
     }
-]
+] as const

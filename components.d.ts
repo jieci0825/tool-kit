@@ -8,11 +8,14 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Clock: typeof import('./src/components/clock/index.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElEmpty: typeof import('element-plus/es')['ElEmpty']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElLoading: typeof import('element-plus/es')['ElLoading']
     ElTag: typeof import('element-plus/es')['ElTag']
+    FlipClock: typeof import('./src/components/clock/flip-clock/index.vue')['default']
+    FlipClockItem: typeof import('./src/components/clock/flip-clock-item/index.vue')['default']
     Header: typeof import('./src/components/header/index.vue')['default']
     PageHeader: typeof import('./src/components/page-header/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
