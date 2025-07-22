@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { ToolList, type IToolItem } from '../config/tool.config'
+import { ToolList, type IToolItem } from '@/config/tool.config.ts'
 import type { ICondition } from '../types'
 
 type HomeContentProps = {
@@ -35,6 +35,21 @@ const filterToolList = computed(() => {
 
 const openOutSideChain = (url: string) => {
     window.open(url, '_blank')
+}
+
+// 打开工具窗口
+const openToolWindow = async (tool: IToolItem) => {
+    try {
+        await window.electronAPI?.openToolWindow({ toolId: tool.id, toolName: tool.name })
+    } catch (error) {
+        console.error('打开工具窗口失败:', error)
+        // 如果是在浏览器环境中（开发调试），则使用路由跳转
+        if (!window.electronAPI) {
+            // 在新标签页中打开工具
+            const url = `${window.location.origin}${window.location.pathname}#/tool/${tool.id}`
+            window.open(url, '_blank')
+        }
+    }
 }
 </script>
 
@@ -74,6 +89,7 @@ const openOutSideChain = (url: string) => {
                 <el-button
                     v-else
                     type="primary"
+                    @click="openToolWindow(item)"
                     >打开工具</el-button
                 >
             </div>

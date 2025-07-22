@@ -59,11 +59,64 @@ function createWindow() {
     return win
 }
 
+// 存储所有创建的工具窗口
+const toolWindows = new Map()
+
+function createToolWindow({ toolId, width, height, minHeight, minWidth }) {
+    const win = new BrowserWindow({
+        width: width || 900,
+        height: height || 650,
+        minWidth: minWidth || 600,
+        minHeight: minHeight || 400,
+        frame: false,
+        titleBarStyle: 'hidden',
+        webPreferences: {
+            preload: join(__dirname, 'preload.js'),
+            nodeIntegration: false,
+            contextIsolation: true
+        }
+    })
+
+    // 区分开发和生产环境，加载对应的工具页面
+    if (isDevelopment()) {
+        // 开发环境：加载开发服务器 URL + 路由参数
+        win.loadURL(`${process.argv[2]}/#/tool/${toolId}`)
+    } else {
+        // 生产环境：加载本地 HTML 文件 + 路由参数
+        win.loadFile(join(__dirname, '../dist/renderer/index.html'), {
+            hash: `/tool/${toolId}`
+        })
+    }
+
+    // 窗口关闭时从 Map 中移除
+    win.on('closed', () => {
+        toolWindows.delete(toolId)
+    })
+
+    // 存储窗口引用
+    toolWindows.set(toolId, win)
+
+    return win
+}
+
 app.whenReady().then(() => {
     mianWindow = createWindow()
 
     ipcMain.handle('is-development', () => {
         return isDevelopment()
+    })
+
+    // 处理打开工具窗口的请求
+    ipcMain.handle('open-tool-window', (event, config) => {
+        // 如果窗口已存在，则聚焦到该窗口
+        if (toolWindows.has(config.toolId)) {
+            const existingWindow = toolWindows.get(config.toolId)
+            existingWindow.focus()
+            return
+        }
+
+        // 创建新的工具窗口
+        createToolWindow(config)
     })
 
     // 注册 f12 调试
@@ -80,6 +133,7 @@ app.on('will-quit', () => {
     globalShortcut.unregisterAll()
     ipcMain.removeAllListeners('get-music-path')
     ipcMain.removeAllListeners('is-development')
+    ipcMain.removeAllListeners('open-tool-window')
 })
 
 app.on('window-all-closed', () => {

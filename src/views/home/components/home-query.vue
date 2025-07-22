@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CategoryList, type ICategoryItem } from '../config/category.config'
+import { CategoryList, type ICategoryItem } from '@/config/category.config'
 import type { ICondition } from '../types'
 
 type HomeQueryEmits = {

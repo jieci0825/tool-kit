@@ -1,5 +1,9 @@
-const { contextBridge } = require('electron')
+const { contextBridge, ipcRenderer } = require('electron')
 
-console.log('preload.js')
+contextBridge.exposeInMainWorld('electronAPI', {
+    // 打开工具窗口
+    openToolWindow: config => ipcRenderer.invoke('open-tool-window', config),
 
-contextBridge.exposeInMainWorld('electronAPI', {})
+    // 检查是否为开发环境
+    isDevelopment: () => ipcRenderer.invoke('is-development')
+})
