@@ -21,5 +21,6 @@ declare module 'vue' {
     PageHeader: typeof import('./src/components/page-header/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Settings: typeof import('./src/components/clock/settings/index.vue')['default']
   }
 }

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useDragWindow } from '@/hooks'
 import FilpClock from './flip-clock/index.vue'
 import { useEventListener } from '@vueuse/core'
 
@@ -24,7 +25,9 @@ function handleWheel(e: WheelEvent) {
     currentScale *= scaleFactor
     currentScale = Math.max(minScale, Math.min(maxScale, currentScale)) // 限制缩放范围
     // 格式化缩放值
-    // currentScale = Number(currentScale.toFixed(2))
+    currentScale = Number(currentScale.toFixed(2))
+
+    return
 
     // 即时缩放
     const container = document.querySelector('#clock-container') as HTMLElement
@@ -39,6 +42,7 @@ function handleWheel(e: WheelEvent) {
 }
 
 useEventListener(document, 'wheel', handleWheel, { passive: false })
+useDragWindow('.clock')
 </script>
 
 <template>
@@ -54,5 +58,6 @@ useEventListener(document, 'wheel', handleWheel, { passive: false })
 .clock {
     width: 100%;
     height: 100%;
+    user-select: none;
 }
 </style>
