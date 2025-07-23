@@ -75,8 +75,6 @@ function createToolWindow(
         {
             width: 900,
             height: 650,
-            minWidth: 600,
-            minHeight: 400,
             frame: false,
             titleBarStyle: 'hidden',
             webPreferences: {
@@ -130,6 +128,17 @@ app.whenReady().then(() => {
 
         // 创建新的工具窗口
         createToolWindow(config)
+    })
+
+    // 处理窗口缩放
+    ipcMain.on('resize-window-to-scale', (event, { scale, toolId }) => {
+        const win = BrowserWindow.fromWebContents(event.sender)
+        if (!win) return
+
+        const newWidth = Math.round(350 * scale)
+        const newHeight = Math.round(60 * scale)
+
+        win.setSize(newWidth, newHeight, true)
     })
 
     // 注册 f12 调试

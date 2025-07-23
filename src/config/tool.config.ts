@@ -19,10 +19,8 @@ export const ToolList: IToolItem[] = [
         category: 'appearance',
         description: '如果你喜欢类似日历卡片翻动的时钟效果，你应该尝试一下',
         windowOptions: {
-            width: 600,
-            height: 300,
-            minWidth: 600,
-            minHeight: 300,
+            width: 350,
+            height: 60,
             resizable: false,
             transparent: false,
             frame: false,

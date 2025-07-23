@@ -5,5 +5,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
     openToolWindow: config => ipcRenderer.invoke('open-tool-window', config),
 
     // 检查是否为开发环境
-    isDevelopment: () => ipcRenderer.invoke('is-development')
+    isDevelopment: () => ipcRenderer.invoke('is-development'),
+
+    // 缩放窗口
+    resizeWindowToScale: payload => ipcRenderer.send('resize-window-to-scale', payload)
 })

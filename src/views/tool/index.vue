@@ -13,7 +13,11 @@ const componentMap: { [key in string]: Component } = {
 </script>
 
 <template>
-    <component :is="componentMap[props.toolId]" />
+    <component
+        v-if="componentMap[props.toolId]"
+        v-bind="props"
+        :is="componentMap[props.toolId]"
+    />
 </template>
 
 <style scoped lang="scss"></style>
